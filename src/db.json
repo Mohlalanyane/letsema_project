@@ -1,0 +1,18 @@
+{
+  "users": [
+    {
+      "id": "6c47",
+      "names": "Jane Doe",
+      "email": "jane@gmail.com",
+      "password": "password",
+      "confirmPassword": "password"
+    },
+    {
+      "id": "2524",
+      "names": "",
+      "email": "",
+      "password": "",
+      "confirmPassword": ""
+    }
+  ]
+}
