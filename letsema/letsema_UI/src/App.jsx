@@ -2,6 +2,7 @@ import { useState } from 'react'
 import LoginPage from './Pages/LoginPage'
 import SignUpPage from './Pages/SignUpPage'
 import DashboardPage from './Pages/DashboardPage'
+import NotFound from './Pages/NotFound'
 import { Route, createBrowserRouter, createRoutesFromElements, RouterProvider } from 'react-router-dom'
 import axios from 'axios'
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css'
@@ -38,15 +39,20 @@ function App() {
 
   }
 
-
-
-
   const router = createBrowserRouter(
     createRoutesFromElements(
       <Route>
         <Route path='/signin' element={<LoginPage submit={login} />} />
         <Route path='/signup' element={<SignUpPage submit={register} />} />
-        <Route path="/dashboard" element={<DashboardPage />} />
+        <Route
+          path="/dashboard"
+          element={
+            //<ProtectedRoute>
+              <DashboardPage />
+            //</ProtectedRoute>
+          }
+        />
+        <Route path="*" element={<NotFound />}></Route>
 
         {/* <Route path="/jobs" element={<JobsPage />} />
         <Route path="/jobs/:id" element={<JobPage deleteJob={deleteJob} />} loader={jobLoader} />
