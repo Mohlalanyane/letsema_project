@@ -9,7 +9,6 @@ const DashboardPage = () => {
         <div>
       <Navbar />
       <div className="home-container">
-        <h2>Welcome to Letsema Loan Management</h2>
         <Dashboard />
       </div>
     </div>
