@@ -1,0 +1,64 @@
+
+.body {
+    background-color: green;
+}
+
+.loan-form-container {
+    width: 100%;
+    max-width:fit-content;
+    margin: 50px auto;
+    padding: 30px;
+    background-color: #1a1a2e; 
+    color: rgb(250, 243, 243);
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+  }
+  
+ 
+  .loan-form-container h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: white;
+  }
+  
+
+  .form-group {
+    margin-bottom: 15px;
+    text-align: left;
+  }
+  
+  
+  .form-input {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+    background-color: #2c2c5c; 
+    color: white;
+  }
+  
+
+  .submit-button {
+    padding: 12px 20px;
+    font-size: 18px;
+    color: white;
+    background-color: #209cff; 
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  
+  .submit-button:hover {
+    background-color: #1a7bb9; 
+  }
+  
+  
+  .form-input::placeholder {
+    color: #aaa;
+  }
+  
