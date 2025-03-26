@@ -10,6 +10,7 @@ const LoginPage = ({ submit }) => {
     const [password, setPassword] = useState('');
 
     const handleSubmit = (e) => {
+
         e.preventDefault()
 
         const credentials = {
@@ -17,9 +18,13 @@ const LoginPage = ({ submit }) => {
             password
         }
 
-        submit(credentials)
+        if ( submit(credentials) === true ){
+            return navigate('/dashboard')
+        } else {
+            return navigate('/signin')
+        }
 
-        return navigate('/dashboard')
+        
 
     }
 
@@ -31,14 +36,14 @@ const LoginPage = ({ submit }) => {
 
                 <div className="form-floating mb-2">
                     <input
-                        type="email"
+                        type="text"
                         className="form-control"
                         id="floatingInput"
-                        placeholder="name@example.com"
+                        placeholder="Jane"
                         value={email}
                         onChange={(e) => { setEmail(e.target.value) }}
                     />
-                    <label for="floatingInput">Email address</label>
+                    <label for="floatingInput">Username</label>
                 </div>
                 <div className="form-floating mb-2">
                     <input

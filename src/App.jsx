@@ -2,8 +2,11 @@ import { useState } from 'react'
 import LoginPage from './Pages/LoginPage'
 import SignUpPage from './Pages/SignUpPage'
 import DashboardPage from './Pages/DashboardPage'
+import LoanApplicationForm from './Pages/LoanApplicationForm'
+import NotFound from './Pages/NotFound'
+import { ACCESS_TOKEN, REFRESH_TOKEN } from "./constants";
 import { Route, createBrowserRouter, createRoutesFromElements, RouterProvider } from 'react-router-dom'
-import axios from 'axios'
+import api from './api'
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css'
 
 
@@ -11,7 +14,10 @@ function App() {
 
   const register = async (details) => {
     try {
-      const response = await axios.post('api/users', details)
+      const username = details.names
+      const password = details.password
+
+      const res = await api.post("/api/user/register/", { username, password })
 
     } catch (error) {
       alert('Could Not Register Account')
@@ -20,33 +26,39 @@ function App() {
 
   const login = async (credentials) => {
     try {
-      const response = await axios.get('api/users')
+      //const response = await axios.get('api/users')
+      const username = credentials.email
+      const password = credentials.password
 
-      const auth = response.data.filter(user => user.email === credentials.email && user.password === credentials.password)
-      console.log(auth)
+      const res = await api.post("/api/token/", { username, password })
 
-      if (auth.length === 1) {
-        alert('logged in')
-      } else {
-        alert('Incorrect Credentials')
-      }
+      localStorage.setItem(ACCESS_TOKEN, res.data.access);
+      localStorage.setItem(REFRESH_TOKEN, res.data.refresh);
+
+      return true
 
     } catch (error) {
-      alert('Could Not login')
+      alert(`the error produced when logging in is ${error}  redirect back to login`)
+      return false
     }
 
-
   }
-
-
-
 
   const router = createBrowserRouter(
     createRoutesFromElements(
       <Route>
         <Route path='/signin' element={<LoginPage submit={login} />} />
         <Route path='/signup' element={<SignUpPage submit={register} />} />
-        <Route path="/dashboard" element={<DashboardPage />} />
+        <Route
+          path="/dashboard"
+          element={
+            //<ProtectedRoute>
+            <DashboardPage />
+            //</ProtectedRoute>
+          }
+        />
+        <Route path="/loan-application" element={<LoanApplicationForm />} />
+        <Route path="*" element={<NotFound />}></Route>
 
         {/* <Route path="/jobs" element={<JobsPage />} />
         <Route path="/jobs/:id" element={<JobPage deleteJob={deleteJob} />} loader={jobLoader} />

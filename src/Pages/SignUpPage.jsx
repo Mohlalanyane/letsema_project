@@ -22,7 +22,7 @@ const SignUpPage = ({ submit }) => {
         }
 
         submit(details)
-        return navigate('/dashboard')
+        return navigate('/signin')
     }
 
 
@@ -39,11 +39,11 @@ const SignUpPage = ({ submit }) => {
                         type="text"
                         className="form-control"
                         id="floatingInput"
-                        placeholder="Jane Doe"
+                        placeholder="Jane"
                         value={names}
                         onChange={(e) => { setName(e.target.value) }}
                     />
-                    <label for="floatingInput">Full Name</label>
+                    <label for="floatingInput">Username</label>
                 </div>
 
                 <div className="form-floating mb-2">
