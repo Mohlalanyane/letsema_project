@@ -1,0 +1,39 @@
+Get http://localhost:8000/api/users/ HTTP/1.1
+
+###
+
+POST http://localhost:8000/api/token/ HTTP/1.1
+Content-Type: application/json
+
+{
+    "email":"email@email.com",
+    "password":"1234567"
+}
+
+###
+POST http://localhost:8000/api/token/refresh/ HTTP/1.1
+Content-Type: application/json
+
+{
+    "refresh":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTc0MzEwNDU1NCwiaWF0IjoxNzQzMDE4MTU0LCJqdGkiOiIxYjQ5YjNiNWYxMTE0OTlhOGVlNTcwOGI2NTdlYTM1OCIsInVzZXJfaWQiOiI4ZGE3YzI0My1iMjg5LTRkMmEtYThlYi03OTA4ZTBlNzczZDMifQ.bqC2TV9agIn2RZbrnL6M5bgO0GBNudJ6s9tlqAd5eW8"
+}
+
+###
+
+GET  http://localhost:8000/api/users/ HTTP/1.1
+
+###
+
+POST  http://localhost:8000/api/user/register/ HTTP/1.1
+Content-Type: application/json
+
+{
+    "email": "ltu@gmail.com",
+    "first_name": "Letsema",
+    "last_name": "Tumelo", 
+    "phone number": "0712345678",
+    "password": "1234567",
+    "date of birth": "1999-12-12",
+    "address": "1234, 1234"
+
+}
