@@ -3,6 +3,7 @@ import LoginPage from './Pages/LoginPage'
 import SignUpPage from './Pages/SignUpPage'
 import DashboardPage from './Pages/DashboardPage'
 import LoanApplicationForm from './Pages/LoanApplicationForm'
+import IndexPage from './Pages/IndexPage'
 import NotFound from './Pages/NotFound'
 import { ACCESS_TOKEN, REFRESH_TOKEN } from "./constants";
 import { Route, createBrowserRouter, createRoutesFromElements, RouterProvider } from 'react-router-dom'
@@ -58,6 +59,7 @@ function App() {
           }
         />
         <Route path="/loan-application" element={<LoanApplicationForm />} />
+        <Route path="/" element={<IndexPage />} />
         <Route path="*" element={<NotFound />}></Route>
 
         {/* <Route path="/jobs" element={<JobsPage />} />
