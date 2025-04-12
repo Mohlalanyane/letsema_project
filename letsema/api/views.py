@@ -15,7 +15,7 @@ class CreateUserView(generics.CreateAPIView):#CREATE A NEW USER  CreateAPIView
 class ListUserView(generics.ListAPIView):#List All USERs
     queryset = User.objects.all() #all available users  tuples 
     serializer_class = UserSerializer#format of the data that is to be expected
-    permission_classes = [AllowAny]#any one can perform the task
+    permission_classes = [IsAuthenticated]#any one can perform the task
 
 class LoanOfficerListCreateAPIView(generics.ListCreateAPIView):
     queryset = LoanOfficer.objects.all()

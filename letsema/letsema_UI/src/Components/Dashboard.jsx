@@ -31,10 +31,8 @@ function Dashboard() {
   return (
     <div className="dashboard w-100">
       {/* Welcome message */}
-      <h1 className="display-5">Dashboard</h1>
-      <h2 className="display-6 mb-3">Welcome to Letsema Loan Management</h2>
-
-
+      <h1 className="display-5 text-dark">Dashboard</h1>
+    
       <div className="">
         <div className="row">
           <div className="col-4">
