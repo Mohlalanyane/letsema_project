@@ -1,18 +1,15 @@
 import React from 'react'
-import { NavLink,  } from 'react-router-dom'
-import { ACCESS_TOKEN, REFRESH_TOKEN } from "../constants";
+import { NavLink, useNavigate } from 'react-router-dom'
 import { useState } from 'react';
-import axios from 'axios';
 
-const LoginPage = () => {
+const LoginPage = ({ submit }) => {
 
-    //const navigate = useNavigate();
+    const navigate = useNavigate();
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [message, setMessage] = useState('');
 
-    const handleSubmit = async(e) => {
+    const handleSubmit = (e) => {
 
         e.preventDefault()
 
@@ -21,30 +18,11 @@ const LoginPage = () => {
             password
         }
 
-        try {
-            //const response = await axios.get('api/users')
-            setMessage("please wait...")
-            const email = credentials.email
-            const password =  credentials.password
-            const res = await axios.post("http://localhost:8000/api/token/", {
-                email: email,  
-                password: password
-            }, {
-                headers: { "Content-Type": "application/json" }
-            });
-      
-            
-            console.log(res)
-       
-            localStorage.setItem(ACCESS_TOKEN, res.data.access);
-            localStorage.setItem(REFRESH_TOKEN, res.data.refresh);
-            setMessage("Logged In...")
-            window.location.href = "/dashboard";
-      
-          } catch (error) {
-            console.log(error)
-            setMessage("ERROR")
-          }
+        if ( submit(credentials) === true ){
+            return navigate('/dashboard')
+        } else {
+            return navigate('/signin')
+        }
 
         
 
@@ -55,7 +33,7 @@ const LoginPage = () => {
             <form className='w-25 p-2' onSubmit={handleSubmit}>
 
                 <h1 className="h3 mb-3 fw-normal text-center">Please Log in</h1>
-                <p className="text-center text-success">{message}</p>
+
                 <div className="form-floating mb-2">
                     <input
                         type="text"
