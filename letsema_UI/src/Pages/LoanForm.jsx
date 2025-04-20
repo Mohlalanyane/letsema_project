@@ -1,94 +1,102 @@
-import React, { useState } from 'react';
-//import './LoanForm.css';
+import React, { use } from 'react'
+import Navbar from '../Components/Navbar'
+import { useState } from 'react'
 
 const LoanForm = () => {
-  const [formData, setFormData] = useState({
-    firstName: '',
-    lastName: '',
-    title: '',
-    maritalStatus: [],
-    email: '',
-    mobileNumber: '',
-    homeNumber: '',
-    address: '',
-    city: '',
-    state: '',
-  });
 
-  const handleChange = (e) => {
-    const { name, value, type, checked } = e.target;
-    if (type === 'checkbox') {
-      setFormData((prevData) => ({
-        ...prevData,
-        maritalStatus: checked
-          ? [...prevData.maritalStatus, value]
-          : prevData.maritalStatus.filter((status) => status !== value),
-      }));
-    } else {
-      setFormData((prevData) => ({
-        ...prevData,
-        [name]: value,
-      }));
+    const [borrowerId,setBorrowerId] = useState('')
+    const [borrowerName,setBorrowerName] = useState('')
+    const [mfi,setMfi] = useState('')
+    const [product,setProduct] = useState('')
+    const [amount,setAmount] = useState('')
+    const [term,setTerm] = useState('')
+    const [purpose,setPurpose] = useState('')
+    const [colateral,setColateral] = useState('')
+
+
+    const handleSubmit = async(e)=>{
+        e.preventDefault();
+
+        let loanDetails = {
+            borrowerId,
+            borrowerName,
+            mfi,
+            product,
+            amount,
+            term,
+            purpose,
+            colateral
+        }
+
+        console.log(loanDetails)
     }
-  };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    alert('Loan Application Submitted');
-  };
+
 
   return (
-    <div className="loan-form-container">
-      <h2>Loan Application Form</h2>
-      <p>Please fill out the fields below in as much detail as possible. Once we receive your form, we will begin the application process.</p>
-      <h3>Contact Information</h3>
-      <form onSubmit={handleSubmit} className="loan-form">
-        <div className="form-row">
-          <label>First & Last Name</label>
-          <input type="text" name="firstName" placeholder="First Name" value={formData.firstName} onChange={handleChange} />
-          <input type="text" name="lastName" placeholder="Second Name" value={formData.lastName} onChange={handleChange} />
-        </div>
-        <div className="form-group">
-          <label>Title</label>
-          <select name="title" value={formData.title} onChange={handleChange}>
-            <option value="">Please select...</option>
-            <option value="Mr">Mr</option>
-            <option value="Mrs">Mrs</option>
-            <option value="Miss">Miss</option>
-          </select>
-        </div>
-        <div className="form-group">
-          <label>Marital Status</label>
-          <div className="checkbox-group">
-            <label><input type="checkbox" name="maritalStatus" value="Single" onChange={handleChange} /> Single</label>
-            <label><input type="checkbox" name="maritalStatus" value="Married" onChange={handleChange} /> Married</label>
-            <label><input type="checkbox" name="maritalStatus" value="Other" onChange={handleChange} /> Other</label>
-          </div>
-        </div>
-        <div className="form-group">
-          <label>Email</label>
-          <input type="email" name="email" placeholder="ex: muname@example.com" value={formData.email} onChange={handleChange} />
-        </div>
-        <div className="form-group">
-          <label>Mobile Number</label>
-          <input type="tel" name="mobileNumber" placeholder="Mobile Number" value={formData.mobileNumber} onChange={handleChange} />
-        </div>
-        <div className="form-group">
-          <label>Home Number (If Applicable)</label>
-          <input type="tel" name="homeNumber" placeholder="Home Number" value={formData.homeNumber} onChange={handleChange} />
-        </div>
-        <div className="form-group">
-          <label>Address</label>
-          <input type="text" name="address" placeholder="Street Address" value={formData.address} onChange={handleChange} />
-        </div>
-        <div className="form-row">
-          <input type="text" name="city" placeholder="City" value={formData.city} onChange={handleChange} />
-          <input type="text" name="state" placeholder="State / Province" value={formData.state} onChange={handleChange} />
-        </div>
-        <button type="submit" className="submit-button">Submit Application</button>
-      </form>
-    </div>
-  );
-};
+    <main style={{ height: '100vh' }} className="w-100 m-auto">
+          <div class="row h-100">
+            <div class="col-2" >
+            <Navbar />
+            </div>
+        <div class="col-10 d-flex justify-content-center">
+        <form onSubmit={handleSubmit}  className='w-50'>
 
-export default LoanForm;
+        <h1 className="h3 mb-5 fw-normal text-center">Apply for loan</h1>
+
+        <div className="input-group mb-3">
+        <span className="input-group-text">Borrower ID</span>
+            <input type="text" className="form-control me-1" placeholder="e.g 2740981" aria-label="Username" value={borrowerId} onChange={(e)=> setBorrowerId(e.target.value)}/>
+            <span className="input-group-text">Name</span>
+            <input type="text" className="form-control" placeholder="e.g Jane Doe" aria-label="Server" value={borrowerName} onChange={(e)=> setBorrowerName(e.target.value)}/>
+        </div>
+
+        <label for="mfi" className="form-label mt-2">Microfinance Institution:</label>
+        <select id="mfi" className="form-select mb-2" aria-label="Default select example" value={mfi} onChange={(e)=> setMfi(e.target.value)}>
+            <option selected>Choose MFI:</option>
+            <option value="1">MFI 1</option>
+            <option value="2">MFI 2</option>
+            <option value="3">MFI 3</option>
+        </select>
+
+        <label for="product" className="form-label mt-2">Loan Product:</label>
+        <select id="product" className="form-select mb-2" aria-label="Default select example" value={product} onChange={(e)=> setProduct(e.target.value)}>
+            <option selected>Choose loan product:</option>
+            <option value="1">Product 1</option>
+            <option value="2">Product 2</option>
+            <option value="3">Product 3</option>
+        </select>
+
+        <label for="product" className="form-label mt-2">Loan Details:</label>
+        <div className="input-group mb-3">
+            <span className="input-group-text">Loan Amount</span>
+            <input type="text" className="form-control me-1" placeholder="e.g M2500" aria-label="Username" value={amount} onChange={(e)=> setAmount(e.target.value)} />
+            <span className="input-group-text">Loan Term</span>
+            <input type="text" className="form-control" placeholder="(in months)" aria-label="Server" value={term} onChange={(e)=> setTerm(e.target.value)}/>
+        </div>
+
+
+        <div className="mb-3">
+            <label for="purpose" className="form-label">Loan Purpose:</label>
+            <textarea className="form-control" id="purpose" rows="3"  placeholder="Describe the purpose of this loan..." value={purpose} onChange={(e)=> setPurpose(e.target.value)}></textarea>
+        </div>
+
+        <div className="mb-3">
+            <label for="colateral" className="form-label">Colateral:</label>
+            <input type="text" className="form-control" id="colateral" placeholder="e.g., Property, Vehicle" value={colateral} onChange={(e)=> setColateral(e.target.value)}/>
+        </div>
+
+
+        <button className="btn btn-dark w-100 py-2" type="submit">Submit Application</button>
+
+        <p className="mt-5 mb-3 text-center text-body-secondary">&copy;2025</p>
+        </form>
+        </div>
+    </div>
+   
+</main>
+)
+  
+}
+
+export default LoanForm

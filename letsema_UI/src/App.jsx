@@ -1,7 +1,11 @@
 import { useState } from 'react'
 import LoginPage from './Pages/LoginPage'
 import SignUpPage from './Pages/SignUpPage'
+import MFISignup from './Pages/MFISignup'
+import IndexPage from './Pages/IndexPage'
+import OfficerSignup from './Pages/OfficerSignup'
 import DashboardPage from './Pages/DashboardPage'
+import MFIDashboardPage from './Pages/MFIDashboardPage'
 import LoanForm from './Pages/LoanForm'
 import NotFound from './Pages/NotFound'
 import { ACCESS_TOKEN, REFRESH_TOKEN } from "./constants";
@@ -47,8 +51,12 @@ function App() {
   const router = createBrowserRouter(
     createRoutesFromElements(
       <Route>
+         <Route path='/' element={<IndexPage  />} />
         <Route path='/signin' element={<LoginPage submit={login} />} />
         <Route path='/signup' element={<SignUpPage submit={register} />} />
+        <Route path='/mfi_signup' element={<MFISignup submit={register} />} />
+        <Route path='/officer_signup' element={<OfficerSignup submit={register} />} />
+        <Route path='/mfi_dashboard' element={<MFIDashboardPage/>} />
         <Route
           path="/dashboard"
           element={
